@@ -63,6 +63,8 @@ def add_missing_inparams(db_repo, cl, params):
 
 # ************************************************************************************************
 # get information and data out of the repo
+# See README.md in the same directory as this file
+# TODO merge all documentation together
 
 
 # TODO: Why are the iterators duplicated in freecad.py and openscad.py
@@ -157,11 +159,11 @@ import boltspy as bolts
 
 
 # ************************************************************************************************
-# acces the repo
+# access the repo
 #
 # each *.blt file in data directory is a collection
 # a collections consists of classes
-# class and collection ids are uniqe in the entire repo
+# class and collection ids are unique in the entire repo
 # two possibilities to access them
 # the use of repo attributes or repo iterators
 

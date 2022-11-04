@@ -1,21 +1,22 @@
-# ****************************************************************************
-# BOLTS - Open Library of Technical Specifications
-# Copyright (C) 2016 Bernd Hahnebach <bernd@bimstatik.org>
-#
-# This library is free software; you can redistribute it and/or
-# modify it under the terms of the GNU Lesser General Public
-# License as published by the Free Software Foundation; either
-# version 2.1 of the License, or any later version.
-#
-# This library is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-# Lesser General Public License for more details.
-#
-# You should have received a copy of the GNU Lesser General Public
-# License along with this library; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
-# ****************************************************************************
+# ******************************************************************************
+# BOLTS - Open Library of Technical Specifications                             *
+#                                                                              *
+# Copyright (C) 2016 Bernd Hahnebach <bernd@bimstatik.org>                     *
+#                                                                              *
+# This library is free software; you can redistribute it and/or                *
+# modify it under the terms of the GNU Lesser General Public                   *
+# License as published by the Free Software Foundation; either                 *
+# version 2.1 of the License, or any later version.                            *
+#                                                                              *
+# This library is distributed in the hope that it will be useful,              *
+# but WITHOUT ANY WARRANTY; without even the implied warranty of               *
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU             *
+# Lesser General Public License for more details.                              *
+#                                                                              *
+# You should have received a copy of the GNU Lesser General Public             *
+# License along with this library; if not, write to the Free Software          *
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA *
+# ******************************************************************************
 
 author: Bernd Hahnebach <bernd@bimstatik.org>
 blt-version: 0.4
@@ -24,6 +25,44 @@ id: profile_i
 license: LGPL 2.1+ <http://www.gnu.org/licenses/lgpl-2.1>
 name: Profiles I
 classes:
+- id: ibeam_bluescope
+  names:
+    description: BlueScope profile, metric Australian Lysaght i-beam profile
+    labeling: '%(type)s, l=%(l)s'
+    name: BlueScope i-beam profile
+  notes: http://en.wikipedia.org/wiki/I-beam
+  parameters:
+    defaults:
+      l: 1000
+      type: 100UC15
+    description:
+      b: flange width
+      h: beam height
+      l: beam length
+      r: fillet radius
+      tf: flange thickness
+      tw: web thickness
+      type: beam type
+    free: [type, l]
+    tables:
+      columns:  [h, b, tf, tw, r]
+      data: !include profile_i/ibeam_bluescope.yaml
+      index: type
+    types:
+      b: Length (mm)
+      h: Length (mm)
+      l: Length (mm)
+      r: Length (mm)
+      tf: Length (mm)
+      tw: Length (mm)
+      type: Table Index
+  source: https://cdn.dcs.bluescope.com.au/download/the-lysaght-referee-35th-edition#page=249
+  standards:
+    body: None
+    description: BlueScope profile, metric Australia Lysaght i-beam profile
+    group: Company BlueScope
+    labeling: BlueScope %(type)s, l=%(l)s
+    standard: BlueScope i-beam
 - id: ibeam_hea
   names:
     description: HEA profile, metric european standard i-beam profile
@@ -420,3 +459,41 @@ classes:
     group: DIN 1025
     labeling: DIN1025-1 %(type)s, l=%(l)s
     standard: DIN 1025-1
+- id: ibeam_w_imp
+  names:
+    description: W profile, imperial US standard i-beam profile
+    labeling: '%(type)s, l=%(l)s'
+    name: W Profile
+  notes: AISC Shapes Database v15.0, November 2017, https://www.aisc.org/globalassets/aisc/manual/v15.0-shapes-database/aisc-shapes-database-v15.0.xlsx
+  parameters:
+    defaults:
+      l: 12
+      type: W10X30
+    description:
+      b: flange width
+      h: beam height
+      l: beam length
+      r: fillet radius
+      tf: flange thickness
+      tw: web thickness
+      type: beam type
+    free: [type, l]
+    tables:
+      columns:  [h, b, tw, tf, r]
+      data: !include profile_i/ibeam_w_imp.yaml
+      index: type
+    types:
+      b: Length (in)
+      h: Length (in)
+      l: Length (in)
+      r: Length (in)
+      tf: Length (in)
+      tw: Length (in)
+      type: Table Index
+  source: http://www.bauforumstahl.de/Querschnittswerte
+  standards:
+    body: AISC
+    description: W profile, imperial US standard i-beam profile
+    group: AISC 
+    labeling: AISC Shapes Database v15.0 %(type)s, l=%(l)s
+    standard: AISC Shapes Database v15.0
